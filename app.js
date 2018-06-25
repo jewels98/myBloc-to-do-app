@@ -1,4 +1,5 @@
 function onReady() {
+<<<<<<< HEAD
     var toDos = [];
     var addToDoForm = document.getElementById('addToDoForm');
 
@@ -11,8 +12,31 @@ function onReady() {
             complete: false
         });
 
-        newToDoText.value = '';
+=======
+    let id = 0;
+    let toDos = [];
+    const addToDoForm = document.getElementById('addToDoForm');
+    const newToDoText = document.getElementById('newToDoText');
+    const toDoList = document.getElementById('toDoList');
 
+    function createNewToDo() {
+        if (!newToDoText.value) {
+            return;
+        }
+
+        toDos.push({
+            title: newToDoText.value,
+            complete: false,
+            id: id
+        }); ///ends ToDos
+
+        id++;
+>>>>>>> assignment-8-events
+        newToDoText.value = '';
+        renderTheUI();
+    } //ends createNewToDo function
+
+<<<<<<< HEAD
         renderTheUI(toDos);
     }
 
@@ -57,3 +81,40 @@ function onReady() {
 window.onload = function () {
     onReady();
 };
+=======
+    function renderTheUI() {
+        const toDoList = document.getElementById('toDoList');
+        toDoList.textContent = '';
+        toDos.forEach(function (toDo) {
+            const newLi = document.createElement('li');
+            const checkbox = document.createElement('input');
+            const deleteBtn = document.createElement('input');
+            checkbox.type = "checkbox";
+            deleteBtn.type = "button";
+            deleteBtn.value = "delete";
+            newLi.textContent = toDo.title;
+            toDoList.appendChild(newLi);
+            newLi.appendChild(checkbox);
+            newLi.appendChild(deleteBtn);
+            deleteBtn.addEventListener('click', function () {
+                deleteToDo(toDo.id);
+                renderTheUI();
+            }); //ends addEventListener
+        }); //ends .forEach
+    } //ends renderTheUI
+
+    function deleteToDo(id) {
+        toDos = toDos.filter(item => item.id !== id);
+    } //compares the id of each item with the id parameter
+
+    addToDoForm.addEventListener('submit', event => {
+        event.preventDefault();
+        createNewToDo();
+        newToDoText.value = '';
+    }); //ends addEventListener
+} //ends onReady function
+
+window.onload = function () {
+    onReady();
+}; //ends onload function
+>>>>>>> assignment-8-events

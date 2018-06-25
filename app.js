@@ -45,7 +45,7 @@ function onReady() {
 
     }
 
-    addToDoForm.addEventListener('submit', function (event) {
+    addToDoForm.addEventListener('submit', (event) => {
         event.preventDefault();
         createNewToDo();
     });

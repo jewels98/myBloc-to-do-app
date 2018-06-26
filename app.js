@@ -6,20 +6,18 @@ function onReady() {
     const toDoList = document.getElementById('toDoList');
 
     function createNewToDo() {
-        if (!newToDoText.value) {
-            return;
-        }
+        if (!newToDoText.value) { return; }
 
         toDos.push({
             title: newToDoText.value,
             complete: false,
             id: id
-        }); ///ends ToDos
+        });///ends ToDos
 
         id++;
         newToDoText.value = '';
         renderTheUI();
-    } //ends createNewToDo function
+    }//ends createNewToDo function
 
     function renderTheUI() {
         const toDoList = document.getElementById('toDoList');
@@ -38,21 +36,21 @@ function onReady() {
             deleteBtn.addEventListener('click', function () {
                 deleteToDo(toDo.id);
                 renderTheUI();
-            }); //ends addEventListener
-        }); //ends .forEach
-    } //ends renderTheUI
+            });//ends addEventListener
+        });//ends .forEach
+    }//ends renderTheUI
 
     function deleteToDo(id) {
         toDos = toDos.filter(item => item.id !== id);
-    } //compares the id of each item with the id parameter
+    }//compares the id of each item with the id parameter
 
     addToDoForm.addEventListener('submit', event => {
         event.preventDefault();
         createNewToDo();
         newToDoText.value = '';
-    }); //ends addEventListener
-} //ends onReady function
+    });//ends addEventListener
+}//ends onReady function
 
 window.onload = function () {
     onReady();
-}; //ends onload function
+};//ends onload function
